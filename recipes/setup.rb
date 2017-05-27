@@ -13,13 +13,8 @@ package 'git' do
 end
 
 
-file '/etc/motd' do
-	content "his server is the property of Bashar 
-	HOSTNAME : #{node['hostname']}
-	IPADDRESS:#{node['ipaddress']}
-	CUP: #{node['cpu']['0']['mhz']}
-	MEMMORY:#{node['memory']['total']}
-"
+template '/etc/motd' do
+	source 'motd.erb'
 	owner 'root'
 	group 'root'
 	action :create
